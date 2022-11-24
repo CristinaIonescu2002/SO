@@ -1,0 +1,22 @@
+#Tema 1 - Loader de Executabile - Ionescu Cristina
+
+    Ideea principala pe care am folosit-o este:
+- verific fiecare segment sa vad daca contine sau nu adresa data
+- daca gasesc segmentul => vad cate pagini are si incep sa caut prin ele
+- daca gasesc pagina => incerc sa o mapez (daca ce returneaza mmap e MAP_FAILED
+inseamna ca pagina era deja mapata => apelam default_handler)
+- daca pagina nu a depasit file_size zone-ul => facem lseek pentru a seta 
+cursorul in file descriptor unde trebuie (daca returneaza < 0 => apelam
+default_handler)
+- apoi, daca am ajuns pana aici (segment gasit, pagina gasita, pagina a putut
+fi mapata si este si in file_size zone) verificam cat avem de citit
+- avem 2 cazuri:
+    - pagina se afla complet in file_size zone => citim dimensiunea ei
+    - este ultima pagina din file_size zone => citim mai putin
+    (file_size - dim_pag*pag ,  unde pag sunt nr de pagini de dinaintea paginii
+    curente)
+- apoi citim si scriem cu read 
+- apoi aplicam paginii permisiunile folosind mprotect
+
+! daca nu se se gaseste vreun segment sau vreo pagina in care sa se afle adresa
+data => apelam default_handler
