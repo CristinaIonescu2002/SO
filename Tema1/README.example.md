@@ -1,5 +1,5 @@
-Nume:
-Grupă:
+Nume: Ionescu Cristina
+Grupă: 323CC
 
 # Tema <NR> TODO
 # Este recomandat să folosiți diacritice

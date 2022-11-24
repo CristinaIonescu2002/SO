@@ -17,7 +17,9 @@
 #define FUNC_DECL_PREFIX
 #endif /* _WIN32 */
 
+/* initializes the loader */
 FUNC_DECL_PREFIX int so_init_loader(void);
-FUNC_DECL_PREFIX int so_execute(char *path, char *argv[]);
+/* runs an executable specified in the path */
+FUNC_DECL_PREFIX int so_execute(char *path, char *argv[]);//
 
 #endif
