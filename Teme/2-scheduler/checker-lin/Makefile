@@ -8,7 +8,7 @@ build: libscheduler.so
 libscheduler.so: so_scheduler.o
 	$(CC) -shared -o $@ $^
 
-so_scheduler.o: so_scheduler.c
+so_scheduler.o: ../util/so_scheduler.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY: clean
