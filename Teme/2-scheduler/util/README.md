@@ -18,23 +18,23 @@ mare prioritate, iar ultimul cea mai mica); am grija ca pe langa ordinea de prio
 sa fie respectata si ordinea venirii (daca avem threaduri cu prioritatile 5 5 4 3 daca
 vrem sa adaugam altul cu 5, el va fi adaugat astfel 5 5 "5" 4 3)
 - pentru usurarea taskurilor am creat niste functii ajutatoare:
-    -- [initList] = initializeaza o lista
-    -- [destroy_list] = distruge o lista
-    -- [init_scheduler] = aici setam parametrii schedulerului si ii cream cele doua liste
+    - [initList] = initializeaza o lista
+    - [destroy_list] = distruge o lista
+    - [init_scheduler] = aici setam parametrii schedulerului si ii cream cele doua liste
     mentionate mai sus
-    -- pthread_join_end_threads] = trece prin toate threadurile create avand grija sa
+    - pthread_join_end_threads] = trece prin toate threadurile create avand grija sa
     astepte terminarea lor si sa le distruga semafoarele
-    -- [add_list_threads] = adauga threadul in lista "list_threads", dupa cum am spus si
+    - [add_list_threads] = adauga threadul in lista "list_threads", dupa cum am spus si
     mai sus, in lista asta mereu se va adauga la final
-    -- [add_ready_threads] = adauga threadul in lista "ready_threads", in functie de 
+    - [add_ready_threads] = adauga threadul in lista "ready_threads", in functie de 
     prioritatea lui (regula de adaugare este explicata mai sus)
-    -- [pop_ready_threads] = scoate primul thread din lista "ready_threads", doar de atat 
+    - [pop_ready_threads] = scoate primul thread din lista "ready_threads", doar de atat 
     avem nevoie deoarece mereu se va scoate threadul cu prioritatea cea mai mare.
-    -- [running_next_thread] = realizeaza planificare corecta a threadurilor dupa algoritmul
+    - [running_next_thread] = realizeaza planificare corecta a threadurilor dupa algoritmul
     Round Robin (mai multe detalii sunt date in cod)
-    -- [pt_aflare_pid] = ne da contextul de executie a unui thread, e facut dupa modelui 
+    - [pt_aflare_pid] = ne da contextul de executie a unui thread, e facut dupa modelui 
     start_hread din cerinta
-    -- [init_thread] = initializeaza threadul, il aloca, ii atibuie toate informatiile, ii 
+    - [init_thread] = initializeaza threadul, il aloca, ii atibuie toate informatiile, ii 
     initializam semaforul si ii aflam pid-ul folosind pthread_create
 - acum o sa explic pe scurt ce am scris si cum am folosit functiile facute de mine in functiile
 care au fost date
