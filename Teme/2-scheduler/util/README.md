@@ -40,43 +40,43 @@ vrem sa adaugam altul cu 5, el va fi adaugat astfel 5 5 "5" 4 3)
 care au fost date
 
 - [so_init] 
-    -daca schedulerul a fost initializat sau quanta e 0 sau numarul de dispozitive
-    -depaseste numarul maxim => returnam -1
-    -in caz contrar => marcam schedulerul ca fiind initializat si folosim functia
-    "init_scheduler" pe care am creat-o => returnam 0
+    - daca schedulerul a fost initializat sau quanta e 0 sau numarul de dispozitive
+    - depaseste numarul maxim => returnam -1
+    - in caz contrar => marcam schedulerul ca fiind initializat si folosim functia "init_scheduler"
+pe care am creat-o => returnam 0
 
 - [so_fork]
-    -daca handlerul dat e null si prioritatea depaseste prioritatea maxima => returnam -1
-    -in caz contrar alocam thredul care va fi intors de functia "init_thread"
-    -il adaugam in cele doua liste 
-    -daca nu avem thread in RUNNING folosim "running_next_thread" pentru a treceunul dintre 
+    - daca handlerul dat e null si prioritatea depaseste prioritatea maxima => returnam -1
+    - in caz contrar alocam thredul care va fi intors de functia "init_thread"
+    - il adaugam in cele doua liste 
+    - daca nu avem thread in RUNNING folosim "running_next_thread" pentru a treceunul dintre 
 threaduri in starea asta
-    -daca avem unul in RUNNING apelam [so_exec]
-    -returnam pid-ul threadului creat
+    - daca avem unul in RUNNING apelam [so_exec]
+    - returnam pid-ul threadului creat
 
-- [so_wait] =
-    -daca nr de dispozitive i/o nu este valid => returnam -1
-    -ducem threadul din RUNNING in WAINTING si ii dam numarul nou de dispozitive i/o
-    -apelam [so_exec]
-    -returnam 0
+- [so_wait]
+    - daca nr de dispozitive i/o nu este valid => returnam -1
+    - ducem threadul din RUNNING in WAINTING si ii dam numarul nou de dispozitive i/o
+    - apelam [so_exec]
+    - returnam 0
 
-- [so_signal] =
-    -daca numarul de dispozitive i/o nu convine => returnam -1
-    -trecem prin toate nodurile si numaram cate threaduri sunt in WAITING si asteapta evenimente,
+- [so_signal]
+    - daca numarul de dispozitive i/o nu convine => returnam -1
+    - trecem prin toate nodurile si numaram cate threaduri sunt in WAITING si asteapta evenimente,
 carora le atribuim evenimentele si le trecem in READY, apoi le adaugam in "ready_threads"
-    -returnam numarul de threduri gasit
+    - returnam numarul de threduri gasit
 
 
-- [so_exec] =
-    -scadem quanta threadului din RUNNING
-    -verificam cu "running_next_thread" daca ramane in RUNNING sau vine alt thread in locul lui
-    -ii trecem semaforul pe wait
+- [so_exec]
+    - scadem quanta threadului din RUNNING
+    - verificam cu "running_next_thread" daca ramane in RUNNING sau vine alt thread in locul lui
+    - ii trecem semaforul pe wait
 
-- [so_end] =
-    -daca schedulerul nu a fost initializat => returnam 0
-    -apelam "pthread_join_end_lisr_threads" --scrie ce face mai sus
-    -distrugem lista cu toate threadurile "list_threads"
-    -eliberam lista "ready_threads" (nu este nevoie sa o distrugem pentru ca se presupune ca este
+- [so_end]
+    - daca schedulerul nu a fost initializat => returnam 0
+    - apelam "pthread_join_end_lisr_threads" --scrie ce face mai sus
+    - distrugem lista cu toate threadurile "list_threads"
+    - eliberam lista "ready_threads" (nu este nevoie sa o distrugem pentru ca se presupune ca este
 goala atuncti cand am ajuns aici, se presupune ca toate tredurile si-au incheiat executia in
 momentul asta)
-    -marcam schedulerul ca fiind neinitializat
+    - marcam schedulerul ca fiind neinitializat
