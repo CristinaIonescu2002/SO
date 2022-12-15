@@ -1,5 +1,5 @@
-## Planificator de threaduri
-# Ionescu Cristina Grupa 323CC
+# Planificator de threaduri
+## Ionescu Cristina Grupa 323CC
 
     Am ales sa implementez acest planificator de threaduri astfel:
 - informatiile deste handler vor fi retinute in niste variabile globale, statice
