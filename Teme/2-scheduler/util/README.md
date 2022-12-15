@@ -4,11 +4,13 @@
     Am ales sa implementez acest planificator de threaduri astfel:
 - informatiile deste handler vor fi retinute in niste variabile globale, statice
 denumite intuitiv
-- [scheduler_initializat]   -   0 => nu e initializat
-                            -   1 => e initializat
-- ca structuri vom avea: - pentru lista
-                         - pentru nodul listei
-                         - pentru thread
+- [scheduler_initializat]
+    -   0 => nu e initializat
+    -   1 => e initializat
+- ca structuri vom avea:
+    - pentru lista
+    - pentru nodul listei
+    - pentru thread
 - vor fi doua liste "list_threads" si "ready_threads"
 - [list_threads] va contine toate threadurile care se vor crea, in ordinea crearii
 (pe principiul primul venit, primul introdus)
